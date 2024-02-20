@@ -1,0 +1,17 @@
+## Interface: 11500
+## Author: fang2hou
+## Version: 1.0.0
+## Title: BetterBags |cff1784d1ElvUI|r Skin
+## Title-zhCN: BetterBags |cff1784d1ElvUI|r 美化
+## Title-zhTW: BetterBags |cff1784d1ElvUI|r 美化
+## Notes: Make BetterBags more |cff1784d1ElvUI|r Style
+## Notes-zhCN: 使 BetterBags 更加 |cff1784d1ElvUI|r 风
+## Notes-zhTW: 使 BetterBags 更加 |cff1784d1ElvUI|r 風
+## RequiredDeps: ElvUI, BetterBags
+## IconTexture: Interface\Addons\BetterBagsElvUISkin\icon.png
+## X-Curse-Project-ID: 714207
+## X-Wago-ID: R4N2QWGL
+
+api.lua
+core.lua
+init.lua
