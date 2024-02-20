@@ -1,8 +1,6 @@
 local ns = (select(2, ...))
 
-local M = {}
-
-function M.delay(seconds, callback, ...)
+local function delay(seconds, callback, ...)
     local args = { ... }
     if not callback then return end
     C_Timer.After(seconds or 0.01, function()
@@ -10,4 +8,4 @@ function M.delay(seconds, callback, ...)
     end)
 end
 
-ns.util.async = M
+ns.util.delay = delay

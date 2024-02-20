@@ -1,8 +1,6 @@
 local ns = (select(2, ...))
 
-local M = {}
-
-function M.new(wait_for, callback, init_data)
+local function new_trigger(wait_for, callback, init_data)
     if not wait_for or not callback then return end
 
     local ctx = {
@@ -34,4 +32,4 @@ function M.new(wait_for, callback, init_data)
     return is_triggered, updater
 end
 
-ns.util.trigger = M
+ns.util.new_trigger = new_trigger

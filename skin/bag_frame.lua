@@ -1,7 +1,7 @@
 local ns = select(2, ...)
 
 local function handler()
-    ns.util.async.delay(5, function()
+    ns.util.delay(1, function()
         print("bag_frame")
     end)
     -- if ns.util.get_flag(frame) then return end

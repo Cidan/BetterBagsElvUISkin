@@ -1,7 +1,5 @@
 local ns = (select(2, ...))
 
-local M = {}
-
 local function list_extend(list, ...)
     for _, other in ipairs({ ... }) do
         for _, item in ipairs(other) do
@@ -53,13 +51,8 @@ local function tbl_extend(mode, ...)
     return result
 end
 
-ns.util.list = {
-    extend = list_extend,
-    filter = list_filter,
-    map = list_map,
-    size = list_size
-}
-
-ns.util.tbl = {
-    extend = tbl_extend
-}
+ns.util.list_extend = list_extend
+ns.util.list_filter = list_filter
+ns.util.list_map = list_map
+ns.util.list_size = list_size
+ns.util.tbl_extend = tbl_extend

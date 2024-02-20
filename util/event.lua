@@ -1,10 +1,10 @@
 local ns = (select(2, ...))
 
-local M = CreateFrame("Frame")
+local f = CreateFrame("Frame")
 
 local handlers = {}
 
-M:SetScript(
+f:SetScript(
     "OnEvent",
     function(self, event, ...)
         if handlers[event] then
@@ -21,9 +21,9 @@ M:SetScript(
     end
 )
 
-function M.add_handler(event, handler)
+local function handle_event(event, handler)
     if not handlers[event] then
-        M:RegisterEvent(event)
+        f:RegisterEvent(event)
     end
 
     if not handlers[event] then
@@ -33,4 +33,4 @@ function M.add_handler(event, handler)
     tinsert(handlers[event], handler)
 end
 
-ns.util.event = M
+ns.util.handle_event = handle_event

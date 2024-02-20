@@ -1,10 +1,6 @@
 local ns = (select(2, ...))
 
-if not ns or not ns.util then return end
-
-local M = {}
-
-function M.hook(obj, method_name, pre_func, post_func, call_original)
+local function hook(obj, method_name, pre_func, post_func, call_original)
     obj = obj or _G
     local original = obj and obj[method_name]
     if original then
@@ -25,4 +21,14 @@ function M.hook(obj, method_name, pre_func, post_func, call_original)
     end
 end
 
-ns.util.hook = M
+local function post_hook(obj, method_name, post_func)
+    hook(obj, method_name, nil, post_func, true)
+end
+
+local function pre_hook(obj, method_name, pre_func)
+    hook(obj, method_name, pre_func, nil, true)
+end
+
+ns.util.hook = hook
+ns.util.post_hook = post_hook
+ns.util.pre_hook = pre_hook
