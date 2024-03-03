@@ -7,23 +7,40 @@
 ## Notes: Make BetterBags more |cff1784d1ElvUI|r Style
 ## Notes-zhCN: 使 BetterBags 更加 |cff1784d1ElvUI|r 风
 ## Notes-zhTW: 使 BetterBags 更加 |cff1784d1ElvUI|r 風
+## SavedVariables: BetterBagsElvUISkinDB
 ## RequiredDeps: ElvUI, BetterBags
-## IconTexture: Interface\Addons\BetterBagsElvUISkin\icon.png
-## X-Curse-Project-ID: 714207
-## X-Wago-ID: R4N2QWGL
+## OptionalDeps: ElvUI_ToxiUI, ElvUI_WindTools, ElvUI_MerathilisUI, ElvUI_BenikUI
+## IconTexture: Interface\Addons\BetterBagsElvUISkin\media\icon.png
+## X-Curse-Project-ID: 982255
+## X-Wago-ID: 5NReMzG3
 
 init.lua
 
-util/async.lua
-util/event.lua
-util/flag.lua
-util/hook.lua
-util/log.lua
 util/table.lua
+util/log.lua
+util/lazy.lua
+util/hook.lua
+util/event.lua
+util/async.lua
 util/trigger.lua
+util/misc.lua
+util/api.lua
 
 config/defaults.lua
+config/options.lua
 
-skin/bag_frame.lua
+skin/bag.lua
+skin/bag_button.lua
+skin/bag_slots.lua
+skin/currency.lua
+skin/grid.lua
+skin/item.lua
+skin/search.lua
+skin/question.lua
+
+style/toxiui.lua
+style/windtools.lua
+style/merathilisui.lua
+style/benikui.lua
 
 core/init.lua
