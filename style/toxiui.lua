@@ -1,24 +1,34 @@
 local ns = (select(2, ...))
 
-local function shadow_func(ws)
+local function wt_shadow_func(ws)
 	return function(target)
 		ws:CreateShadow(target.frame)
 	end
 end
 
+local function toxi_shadow_func(ts)
+	return function(target)
+		if ts.db and ts.db.shadowEnabled then
+			target.frame:TXCreateSoftShadow(ts.db.shadowSize, ts.db.shadowAlpha)
+		end
+	end
+end
+
 local function apply()
-	if not IsAddOnLoaded("ElvUI_WindTools") then
-		ns.debug("style.toxiui: WindTools is not loaded")
-		return
-	end
+	local func
 
-	if not _G["WindTools"] then
-		ns.debug("style.toxiui: WindTools is not loaded")
-		return
-	end
+	if IsAddOnLoaded("ElvUI_WindTools") then
+		local ws = _G["WindTools"][1].Modules.Skins
+		func = wt_shadow_func(ws)
+	else
+		if not _G["ElvUI_ToxiUI"] then
+			ns.debug("style.toxiui: ToxiUI is not loaded")
+			return
+		end
 
-	local ws = _G["WindTools"][1].Modules.Skins
-	local func = shadow_func(ws)
+		local ts = _G["ElvUI_ToxiUI"][1]:GetModule("Theme")
+		func = toxi_shadow_func(ts)
+	end
 
 	ns.api.register("bag", 1, func)
 	ns.api.register("bag_slots", 1, func)

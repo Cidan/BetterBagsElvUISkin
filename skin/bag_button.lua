@@ -11,7 +11,9 @@ local function skin(target)
 	button.SetBackdrop = ns.noop
 	button.SetBackdropColor = ns.noop
 
-	button.ItemSlotBackground:SetAlpha(0)
+	if button.ItemSlotBackground then
+		button.ItemSlotBackground:SetAlpha(0)
+	end
 
 	button:GetNormalTexture():SetAlpha(0)
 	button:SetHighlightTexture(E.Media.Textures.White8x8)

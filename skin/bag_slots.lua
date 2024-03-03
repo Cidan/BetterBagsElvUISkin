@@ -1,5 +1,7 @@
 local ns = select(2, ...)
 local util = ns.util
+local E = unpack(ElvUI)
+local S = E.Skins
 
 local function skin(target)
 	local panel = target.frame
@@ -7,6 +9,10 @@ local function skin(target)
 	panel:StripTextures(true)
 	panel:SetTemplate(ns.config.transparent and "Transparent")
 	panel.Bg:Hide()
+
+	if panel.CloseButton then
+		S:HandleCloseButton(panel.CloseButton)
+	end
 end
 
 local function handler()

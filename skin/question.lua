@@ -10,6 +10,10 @@ local function skin(target)
 	frame:SetTemplate(ns.config.transparent and "Transparent")
 	frame.Bg:Hide()
 
+	if frame.TitleContainer and frame.TitleContainer.TitleBg then
+		frame.TitleContainer.TitleBg:Hide()
+	end
+
 	if input then
 		S:HandleEditBox(input)
 	end

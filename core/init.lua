@@ -11,17 +11,6 @@ local dependencies_search_map = util.list_to_tbl(dependencies, function(k)
 	return k, true
 end)
 
-local parts = {
-	"bag",
-	"bag_button",
-	"bag_slots",
-	"currency",
-	"grid",
-	"item",
-	"search",
-	"question",
-}
-
 local function init_addon()
 	ns.BetterBags = LibStub("AceAddon-3.0"):GetAddon("BetterBags")
 
@@ -42,8 +31,8 @@ local _, updater = util.new_trigger(
 	end,
 	function()
 		init_addon()
-		for _, part in ipairs(parts) do
-			ns.skin[part]()
+		for _, handler in pairs(ns.skin) do
+			handler()
 		end
 	end,
 	util.list_size(util.list_filter(dependencies, function(name)

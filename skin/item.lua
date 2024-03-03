@@ -11,10 +11,19 @@ local function skin(target)
 	button.SetBackdrop = ns.noop
 	button.SetBackdropColor = ns.noop
 
-	button.ItemSlotBackground:SetAlpha(0)
+	if button.ItemSlotBackground then
+		button.ItemSlotBackground:SetAlpha(0)
+	end
 
-	if ns.config.cooldown and button.Cooldown then
-		E:RegisterCooldown(button.Cooldown, "bags")
+	if ns.config.cooldown then
+		local cd = button.Cooldown
+		if not cd then
+			cd = button:GetName() and _G[button:GetName() .. "Cooldown"]
+		end
+
+		if cd then
+			E:RegisterCooldown(cd, "bags")
+		end
 	end
 
 	local quest_overlay = button:CreateTexture(nil, "OVERLAY")
