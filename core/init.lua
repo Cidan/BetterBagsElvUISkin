@@ -1,38 +1,74 @@
 local ns = (select(2, ...))
+local util = ns.util
+local E = unpack(ElvUI)
 
-local dependencies = { "ElvUI", "BetterBags" }
+local dependencies = {
+	"ElvUI",
+	"BetterBags",
+}
 
--- Just for faster lookup
-local dependencies_name_map = {}
-for _, name in ipairs(dependencies) do
-    dependencies_name_map[name] = true
+local dependencies_search_map = util.list_to_tbl(dependencies, function(k)
+	return k, true
+end)
+
+local parts = {
+	"bag",
+	"bag_button",
+	"bag_slots",
+	"currency",
+	"grid",
+	"item",
+	"search",
+	"question",
+}
+
+local function init_addon()
+	ns.BetterBags = LibStub("AceAddon-3.0"):GetAddon("BetterBags")
+
+	ns.tex_coords = { 0, 1, 0, 1 }
+	local modifier = 0.04 * E.db.general.cropIcon
+	for i, v in ipairs(ns.tex_coords) do
+		if i % 2 == 0 then
+			ns.tex_coords[i] = v - modifier
+		else
+			ns.tex_coords[i] = v + modifier
+		end
+	end
 end
 
--- Use the trigger to lazy load the skinning when all dependencies are loaded
-local _, updater = ns.util.new_trigger(
-    function(data)
-        return data >= #dependencies
-    end,
-    function()
-        ns.util.delay(1, function()
-            ns.util.call_with_log(
-                ns.skin.bag_frame,
-                function()
-                    print(1)
-                    local a = 0
-                    return a["a"]["b"]
-                end
-            )
-        end)
-    end,
-    ns.util.list_size(ns.util.list_filter(dependencies, function(name)
-        return IsAddOnLoaded(name)
-    end))
+local _, updater = util.new_trigger(
+	function(data)
+		return data >= #dependencies
+	end,
+	function()
+		init_addon()
+		for _, part in ipairs(parts) do
+			ns.skin[part]()
+		end
+	end,
+	util.list_size(util.list_filter(dependencies, function(name)
+		return IsAddOnLoaded(name)
+	end))
 )
 
--- Add a handler to the ADDON_LOADED event
-ns.util.handle_event("ADDON_LOADED", function(_, _, addon_name)
-    if dependencies_name_map[addon_name] then
-        updater(function(data) return data + 1 end)
-    end
+util.handle_event("PLAYER_ENTERING_WORLD", function()
+	BetterBagsElvUISkinDB = util.tbl_extend("keep", BetterBagsElvUISkinDB or {}, ns.defaults)
+	ns.config = setmetatable({}, {
+		__index = BetterBagsElvUISkinDB,
+		__newindex = BetterBagsElvUISkinDB,
+	})
+
+	if ns.config.style ~= "elvui" and ns.style[ns.config.style] then
+		ns.call(ns.style[ns.config.style])()
+	end
+
+	util.lazy.set_ready()
+end)
+
+util.handle_event("ADDON_LOADED", function(_, _, addon)
+	if dependencies_search_map[addon] then
+		updater(function(data)
+			return data + 1
+		end)
+	end
 end)
