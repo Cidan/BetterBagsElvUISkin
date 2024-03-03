@@ -1,6 +1,6 @@
 local ns = (select(2, ...))
 
-local DEFAULT_DELAY = 0.1
+local DEFAULT_DELAY = 0.01
 
 local function delay(seconds, callback, ...)
 	local args = { ... }

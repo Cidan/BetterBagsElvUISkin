@@ -8,47 +8,43 @@ local levels = {
 }
 
 local function log_message(level_name, level_color, ...)
-	local config_level = ns.config.log.level and levels[ns.config.log.level:upper()] or levels.WARN
-	if levels[level_name] < config_level then
-		return ""
+	local lvl = ns.config and ns.config.log_level and levels[ns.config.log_level:upper()] or levels.WARN
+	if levels[level_name] < lvl then
+		return
 	end
 	local prefix = "|cFF00FF00[|r|cFF" .. level_color .. level_name .. "|r|cFF00FF00]|r "
 	local combined = string.join(" ", ...)
-	return prefix .. combined
+	print(prefix .. combined)
 end
 
 local function debug(...)
-	print(log_message("DEBUG", "10b981", ...))
+	log_message("DEBUG", "10b981", ...)
 end
 
 local function info(...)
-	print(log_message("INFO", "0ea5e9", ...))
+	log_message("INFO", "0ea5e9", ...)
 end
 
 local function warn(...)
-	print(log_message("WARN", "eab308", ...))
+	log_message("WARN", "eab308", ...)
 end
 
 local function error(...)
-	print(log_message("ERROR", "dc2626", ...))
+	log_message("ERROR", "dc2626", ...)
 end
 
-local function error_handler(...)
-	_G.geterrorhandler()(log_message("ERROR", "dc2626", "BetterBagsElvUISkin Error\n", ...))
-end
-
-local function call_with_log(arg)
-	if type(arg) == "function" then
-		arg = { arg }
+local function call(func)
+	if type(func) ~= "function" then
+		error("call: func is not a function")
 	end
 
-	for i = 1, #arg do
-		if arg[i] then
-			local status = xpcall(arg[i], error_handler)
-			if not status then
-				error("Error occurred in call_with_log. function index: " .. i)
-			end
+	return function(...)
+		local success, result = pcall(func, ...)
+		if not success then
+			error("call: " .. result)
 		end
+
+		return result
 	end
 end
 
@@ -56,4 +52,4 @@ ns.debug = debug
 ns.info = info
 ns.warn = warn
 ns.error = error
-ns.util.call_with_log = call_with_log
+ns.call = call

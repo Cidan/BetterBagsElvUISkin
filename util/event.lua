@@ -4,7 +4,7 @@ local f = CreateFrame("Frame")
 
 local handlers = {}
 
-f:SetScript("OnEvent", function(self, event, ...)
+f:SetScript("OnEvent", function(_, event, ...)
 	if handlers[event] then
 		local event_handlers = handlers[event]
 		if type(event_handlers) == "function" then
