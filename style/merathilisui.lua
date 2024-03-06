@@ -7,7 +7,7 @@ local function shadow_func(ms)
 end
 
 local function apply()
-	if not IsAddOnLoaded("ElvUI_MerathilisUI") then
+	if not ns.blz.IsAddOnLoaded("ElvUI_MerathilisUI") then
 		ns.debug("style.merathilisui: MerathilisUI is not loaded")
 		return
 	end

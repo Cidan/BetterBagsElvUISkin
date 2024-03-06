@@ -1,7 +1,7 @@
 local ns = (select(2, ...))
 
 local function apply()
-	if not IsAddOnLoaded("ElvUI_BenikUI") then
+	if not ns.blz.IsAddOnLoaded("ElvUI_BenikUI") then
 		ns.debug("style.benikui: BenikUI is not loaded")
 		return
 	end

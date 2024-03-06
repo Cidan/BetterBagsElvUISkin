@@ -13,7 +13,7 @@ local defaults = {
 	cooldown = true,
 	style = (function()
 		for _, plugin_data in ipairs(plugins_style) do
-			if IsAddOnLoaded(plugin_data[1]) then
+			if ns.blz.IsAddOnLoaded(plugin_data[1]) then
 				return plugin_data[2]
 			end
 		end

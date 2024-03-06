@@ -36,7 +36,7 @@ local _, updater = util.new_trigger(
 		end
 	end,
 	util.list_size(util.list_filter(dependencies, function(name)
-		return IsAddOnLoaded(name)
+		return ns.blz.IsAddOnLoaded(name)
 	end))
 )
 

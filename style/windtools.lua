@@ -7,7 +7,7 @@ local function shadow_func(ws)
 end
 
 local function apply()
-	if not IsAddOnLoaded("ElvUI_WindTools") then
+	if not ns.blz.IsAddOnLoaded("ElvUI_WindTools") then
 		ns.debug("style.windtools: WindTools is not loaded")
 		return
 	end
