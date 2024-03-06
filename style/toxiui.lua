@@ -17,7 +17,7 @@ end
 local function apply()
 	local func
 
-	if IsAddOnLoaded("ElvUI_WindTools") then
+	if ns.blz.IsAddOnLoaded("ElvUI_WindTools") then
 		local ws = _G["WindTools"][1].Modules.Skins
 		func = wt_shadow_func(ws)
 	else
