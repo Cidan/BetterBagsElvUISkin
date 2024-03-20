@@ -17,6 +17,12 @@ Retail ✅ WotLK ✅ Classic Era ✅
    - BenikUI
 4. Enable ElvUI Cooldowns in BetterBags.
 
+## ❓ FAQ
+
+> Why I cannot set Masque style for the buttons in BetterBags?
+
+The addon uses ElvUI's skin feature to manage all the buttons in BetterBags. If Masque is also used for skinning, some unexpected style errors may occur.
+
 ## 📸 Screenshots
 
 ![screenshot](screenshot.png)
