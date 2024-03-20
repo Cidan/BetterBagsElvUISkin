@@ -11,6 +11,13 @@ local dependencies_search_map = util.list_to_tbl(dependencies, function(k)
 	return k, true
 end)
 
+local function disable_masque()
+	if ns.BetterBags then
+		local masque = ns.BetterBags:GetModule("Masque")
+		masque.OnEnable = util.noop
+	end
+end
+
 local function init_addon()
 	ns.BetterBags = LibStub("AceAddon-3.0"):GetAddon("BetterBags")
 
@@ -31,6 +38,7 @@ local _, updater = util.new_trigger(
 	end,
 	function()
 		init_addon()
+		disable_masque()
 		for _, handler in pairs(ns.skin) do
 			handler()
 		end
