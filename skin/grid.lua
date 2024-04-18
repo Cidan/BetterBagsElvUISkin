@@ -7,6 +7,14 @@ local function skin(target)
 	local bar = target.bar
 
 	S:HandleTrimScrollBar(bar)
+
+	if bar.Back and bar.Back.Texture then
+		bar.Back.Texture:Hide()
+	end
+
+	if bar.Forward and bar.Forward.Texture then
+		bar.Forward.Texture:Hide()
+	end
 end
 
 local function handler()
