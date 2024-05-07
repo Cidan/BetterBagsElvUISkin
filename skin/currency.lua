@@ -15,6 +15,10 @@ local function skin(target)
 	container:SetTemplate(ns.config.transparent and "Transparent")
 	container.Bg:Hide()
 
+	if container.TitleContainer then
+		container.TitleContainer:StripTextures()
+	end
+
 	hooksecurefunc(target.content, "AddCell", function(_, _, item)
 		skin_icon(item)
 	end)
