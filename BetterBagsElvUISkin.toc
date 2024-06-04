@@ -1,6 +1,6 @@
 ## Interface: 100207
 ## Author: fang2hou
-## Version: 1.0.5
+## Version: 1.1.0
 ## Title: BetterBags |cff1784d1ElvUI|r Skin
 ## Title-zhCN: BetterBags |cff1784d1ElvUI|r 美化
 ## Title-zhTW: BetterBags |cff1784d1ElvUI|r 美化
