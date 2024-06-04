@@ -24,6 +24,7 @@ local function apply()
 	ns.api.register("bag_slots", 1, func)
 	ns.api.register("currency", 1, func)
 	ns.api.register("question", 1, func)
+	ns.api.register("section_config", 1, func)
 end
 
 ns.style.windtools = apply
