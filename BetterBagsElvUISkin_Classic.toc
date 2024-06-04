@@ -35,7 +35,9 @@ skin/bag_slots.lua
 skin/currency.lua
 skin/grid.lua
 skin/item.lua
+skin/list.lua
 skin/search.lua
+skin/section_config.lua
 skin/question.lua
 
 style/toxiui.lua
